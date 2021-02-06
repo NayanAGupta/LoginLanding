@@ -17,10 +17,18 @@ public class WelcomePage extends AppCompatActivity {
 
     private TextView textViewResult;
 
+    Bundle extras = getIntent().getExtras();
+    int userID;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
+
+        if (extras != null) {
+            userID = extras.getInt("id");
+        }
 
         textViewResult = findViewById(R.id.text_view_result);
 
@@ -45,12 +53,14 @@ public class WelcomePage extends AppCompatActivity {
                 List<Post> posts = response.body();
 
                 for (Post post : posts) {
-                    String content = "";
-                    content += "ID: " + post.getId() + "\n";
-                    content += "User ID: " + post.getUserId() + "\n";
-                    content += "Title: " + post.getTitle() + "\n";
-                    content += "Text: " + post.getText() + "\n\n";
-                    textViewResult.append(content);
+                    if (userID == post.getUserId()) {
+                        String content = "";
+                        content += "ID: " + post.getId() + "\n";
+                        content += "User ID: " + post.getUserId() + "\n";
+                        content += "Title: " + post.getTitle() + "\n";
+                        content += "Text: " + post.getText() + "\n\n";
+                        textViewResult.append(content);
+                    }
                 }
             }
 

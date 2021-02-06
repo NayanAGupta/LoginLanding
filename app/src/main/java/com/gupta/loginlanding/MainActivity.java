@@ -43,13 +43,17 @@ public class MainActivity extends AppCompatActivity {
                     if (users.get(i).getUsername().equals(username.getText().toString())
                             && users.get(i).getPassword().equals(password.getText().toString())) {
                         found = true;
+                        Toast.makeText(MainActivity.this,"Welcome " + username.getText().toString(),Toast.LENGTH_LONG).show();
+
+                        int id = users.get(i).getId();
+
                         Intent myIntent = new Intent(MainActivity.this, WelcomePage.class);
-                        myIntent.putExtra("id", users.get(i).getId());
+                        myIntent.putExtra("id", id);
                         startActivity(myIntent);
                     }
                 }
                 if(!found) {
-                    Toast.makeText(MainActivity.this,"Authentication Failed",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"Incorrect Credentials",Toast.LENGTH_LONG).show();
                 }
             }
         });
