@@ -15,22 +15,21 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="UserName"
+            android:hint="@string/username"
             android:id="@+id/username"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="password"
+            android:hint="@string/password"
             android:id="@+id/password"
             android:inputType="textPassword"
             />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="@string/login"
             android:background="#3f76ff"
             android:textColor="#fff"
             android:id="@+id/login"/>
-
     </LinearLayout>
 </RelativeLayout>

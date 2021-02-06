@@ -2,6 +2,7 @@ package com.gupta.loginlanding;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,20 +28,28 @@ public class MainActivity extends AppCompatActivity {
 
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
+        login = findViewById(R.id.login);
 
-        login=findViewById(R.id.login);
+        users.add(new User("Nayan" , "monke", 1));
+        users.add(new User("Kat" , "doge", 2));
+        users.add(new User("Zed" , "snek", 3));
+        users.add(new User("Miles" , "phrog", 4));
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Objects.equals(username.getText().toString(), "admin")&&Objects.equals(password.getText().toString(),"admin"))
-                {
-                    Toast.makeText(MainActivity.this,"You have Authenticated Successfully",Toast.LENGTH_LONG).show();
-
-                }else
-                {
+                boolean found = false;
+                for (int i = 0; i < users.size(); i++) {
+                    if (users.get(i).getUsername().equals(username.getText().toString())
+                            && users.get(i).getPassword().equals(password.getText().toString())) {
+                        found = true;
+                        Intent myIntent = new Intent(MainActivity.this, WelcomePage.class);
+                        myIntent.putExtra("id", users.get(i).getId());
+                        startActivity(myIntent);
+                    }
+                }
+                if(!found) {
                     Toast.makeText(MainActivity.this,"Authentication Failed",Toast.LENGTH_LONG).show();
-
                 }
             }
         });

@@ -29,11 +29,10 @@ public class User {
         return id;
     }
 
-    public void add (String username, String password, int id) {
+    public User(String username, String password, int id) {
         setUsername(username);
         setPassword(password);
         setId(id);
     }
-
 
 }
