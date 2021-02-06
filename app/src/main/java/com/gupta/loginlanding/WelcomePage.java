@@ -14,17 +14,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class WelcomePage extends AppCompatActivity {
-
-    private TextView textViewResult;
-
-    Bundle extras = getIntent().getExtras();
     int userID;
-
+    private TextView textViewResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_page);
+
+        Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
             userID = extras.getInt("id");
